@@ -4,9 +4,19 @@ const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const DEFAULT_IS_SHOWING = false;
 
 async function movieExists(request, response, next) {
-  // TODO: Add your code here.
+  const { movie_id: requestedMovieId } = request.params;
 
-  next({});
+  const maybeMovie = await service.read(requestedMovieId);
+
+  if (maybeMovie) {
+    response.locals.movie = maybeMovie;
+    return next();
+  }
+
+  next({
+    status: 404,
+    message: `Movie with id ${requestedMovieId} cannot be found`,
+  });
 }
 
 async function read(request, response) {
