@@ -13,8 +13,8 @@ async function read(request, response) {
 }
 
 async function list(request, response) {
-  // TODO: Add your code here.
-  response.json({ });
+  const data = await service.list();
+  response.json({ data });
 }
 
 module.exports = {

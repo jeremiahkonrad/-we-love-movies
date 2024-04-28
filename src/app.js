@@ -12,5 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/theaters", theatersRouter);
+app.use("/movies", moviesRouter);
 
 module.exports = app;

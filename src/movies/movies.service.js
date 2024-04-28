@@ -19,7 +19,6 @@ async function list(is_showing) {
 
 async function read(movie_id) {
   // TODO: Add your code here
-  
 }
 
 module.exports = {
