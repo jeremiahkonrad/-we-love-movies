@@ -11,4 +11,6 @@ const reviewsRouter = require("./reviews/reviews.router");
 app.use(cors());
 app.use(express.json());
 
+app.use("/theaters", theatersRouter);
+
 module.exports = app;
