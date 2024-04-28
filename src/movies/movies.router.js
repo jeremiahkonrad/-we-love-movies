@@ -5,6 +5,12 @@ const methodNotAllowed = require("../errors/methodNotAllowed");
 const reviewsRouter = require("../reviews/reviews.router");
 const theatersRouter = require("../theaters/theaters.router");
 
+const movieIdValidation = "[0-9]+";
+
 router.route("/").get(controller.list).all(methodNotAllowed);
+router
+  .route(`/:movieId(${movieIdValidation})`)
+  .get(controller.read)
+  .all(methodNotAllowed);
 
 module.exports = router;
