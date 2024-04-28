@@ -1,6 +1,8 @@
 const service = require("./movies.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
+const DEFAULT_IS_SHOWING = false;
+
 async function movieExists(request, response, next) {
   // TODO: Add your code here.
 
@@ -13,7 +15,8 @@ async function read(request, response) {
 }
 
 async function list(request, response) {
-  const data = await service.list();
+  const { is_showing = DEFAULT_IS_SHOWING } = request.query;
+  const data = await service.list(is_showing);
   response.json({ data });
 }
 
