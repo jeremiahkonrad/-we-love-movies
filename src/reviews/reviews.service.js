@@ -3,8 +3,8 @@ const mapProperties = require("../utils/map-properties");
 
 const tableName = "reviews";
 
-async function destroy(reviewId) {
-  // TODO: Write your code here
+async function destroy(review_id) {
+  return db("reviews").where({ review_id }).del();
 }
 
 const addCritic = mapProperties({

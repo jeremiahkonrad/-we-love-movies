@@ -20,7 +20,11 @@ async function reviewExists(request, response, next) {
 }
 
 async function destroy(request, response) {
-  // TODO: Write your code here
+  const review_id = response.locals.review.review_id;
+
+  await service.destroy(review_id);
+
+  response.sendStatus(204);
 }
 
 async function list(request, response) {
