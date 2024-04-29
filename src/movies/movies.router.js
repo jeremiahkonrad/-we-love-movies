@@ -7,13 +7,14 @@ const theatersRouter = require("../theaters/theaters.router");
 
 const movieIdValidation = "[0-9]+";
 
-router.route("/").get(controller.list).all(methodNotAllowed);
-
 router.use("/:movieId/theaters", controller.movieExists, theatersRouter);
+
+router.use("/:movieId/reviews", controller.movieExists, reviewsRouter);
 
 router
   .route(`/:movieId(${movieIdValidation})`)
   .get(controller.read)
   .all(methodNotAllowed);
+router.route("/").get(controller.list).all(methodNotAllowed);
 
 module.exports = router;

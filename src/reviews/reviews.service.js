@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const mapProperties = require("../utils/map-properties");
 
 const tableName = "reviews";
 
@@ -6,8 +7,18 @@ async function destroy(reviewId) {
   // TODO: Write your code here
 }
 
+const addCritic = mapProperties({
+  organization_name: "critic.organization_name",
+  preferred_name: "critic.preferred_name",
+  surname: "critic.surname",
+});
+
 async function list(movie_id) {
-  // TODO: Write your code here
+  return db("reviews as r")
+    .join("critics as c", "r.critic_id", "c.critic_id")
+    .select("r.*", "c.*")
+    .where({ "r.movie_id": movie_id })
+    .then((reviews) => reviews.map(addCritic));
 }
 
 async function read(review_id) {
